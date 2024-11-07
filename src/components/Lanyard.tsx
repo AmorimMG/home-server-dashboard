@@ -15,22 +15,22 @@ const defaultSong = {
       images: [
         {
           height: 640,
-          url: "https://i.scdn.co/image/ab67616d0000b273d09297cae57def4d8adc0749",
+          url: "https://i.scdn.co/image/ab67616d0000b27398f622b722bb7dea65ca0acf",
           width: 640,
         },
       ],
-      name: "Jar Of Flies",
+      name: "hypochondriac",
     },
     artists: [
       {
-        name: "Alice In Chains",
+        name: "brakence",
       },
     ],
     duration_ms: 195882,
     external_urls: {
       spotify: "https://open.spotify.com/track/159CffclwSTvynlA0BUlQG",
     },
-    name: "Nutshell",
+    name: "venus fly trap",
   },
   played_at: "2023-02-06T14:16:32.895Z",
 };

@@ -1,5 +1,5 @@
 import { ArrowPathIcon, ArrowsPointingOutIcon, PowerIcon } from "@heroicons/react/20/solid";
-import { Connection, createConnection, createLongLivedTokenAuth } from "home-assistant-js-websocket";
+import { Connection } from "home-assistant-js-websocket";
 import { memo } from "react";
 import Button from "./Button";
 import Lights from "./Lights";
@@ -18,12 +18,12 @@ console.log(hassUrl);
 let connection: Connection;
 
 async function createHassConnection() {
-  try {
+/*   try {
     const auth = createLongLivedTokenAuth(hassUrl, hassToken);
     connection = await createConnection({ auth });
   } catch (error) {
     console.log(error);
-  }
+  } */
 }
 createHassConnection();
 

@@ -25,21 +25,24 @@ const CryptoPrices = () => {
   });
 
   const updatePrices = async () => {
-    let pricesUpdated = prices;
     try {
-      cryptoPairs.map(async value => {
+      const cryptoPromises = cryptoPairs.map(async value => {
         const resp = await axios.get("https://fapi.binance.com/fapi/v1/ticker/price", {
-          params: {
-            symbol: value,
-          },
+          params: { symbol: value },
         });
-        pricesUpdated[value] = { price: parseFloat(resp?.data?.price) };
+        return { [value]: { price: parseFloat(resp?.data?.price) } };
       });
-
-      const brl = await axios.get("https://economia.awesomeapi.com.br/last/USD-BRL");
-      pricesUpdated["USDBRL"] = { price: parseFloat(brl?.data?.USDBRL?.ask) };
-
-      setPrices(Object.assign({}, pricesUpdated));
+  
+      const brlPromise = axios.get("https://economia.awesomeapi.com.br/last/USD-BRL");
+  
+      const cryptoResults = await Promise.all(cryptoPromises);
+      const brlResult = await brlPromise;
+  
+      const pricesUpdated = cryptoResults.reduce((acc, curr) => ({ ...acc, ...curr }), {
+        USDBRL: { price: parseFloat(brlResult?.data?.USDBRL?.ask) },
+      });
+  
+      setPrices(pricesUpdated);
     } catch (error) {
       console.log(error);
     }
