@@ -1,21 +1,11 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
+const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
-  title: "Home Lab Dashboard",
-  description: "Home Lab Dashboard",
+  title: "Home Lab - Dashboard",
+  description: "Just a dashboard to show infos and smart control",
 };
 
 export default function RootLayout({
@@ -25,11 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

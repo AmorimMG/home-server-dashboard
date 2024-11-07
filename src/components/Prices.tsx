@@ -55,7 +55,7 @@ const CryptoPrices = () => {
   }, []);
 
   return (
-    <div className="flex flex-col gap-2 w-[15rem] text-3xl justify-center items-center text-center [&>div]:bg-[#EE0A69]/60 ">
+    <div className="flex flex-col gap-2 w-[15rem] text-3xl justify-center items-center text-center [&>div]:bg-[#ab0aee]/60 ">
       <div className="flex flex-col h-full w-full rounded-xl p-1 backdrop-blur">
         <span className="font-mono">BTC/USDT</span>
         <span className="text-zinc-300 text-glow-blue-500">{formatter.format(prices["BTCUSDT"]?.price || 0)}</span>

@@ -29,8 +29,8 @@ const ButtonComponent = ({
       disabled={disabled}
       onClick={onClick}
       className={twMerge(
-        "text-3xl rounded-xl backdrop-blur bg-[#EE0A69]/60 flex flex-col justify-center items-center",
-        "hover:bg-[#EE0A69]/80 active:bg-[#EE0A69] transition-colors duration-200 focus:outline-none",
+        "text-3xl rounded-xl backdrop-blur bg-[#ab0aee]/60 flex flex-col justify-center items-center",
+        "hover:bg-[#ab0aee]/80 active:bg-[#ab0aee] transition-colors duration-200 focus:outline-none",
         className
       )}
     >
