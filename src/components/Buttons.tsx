@@ -127,13 +127,13 @@ const Buttons = () => {
           <Lights
             label="Bedroom"
             entity="switch.quarto_gabriel_switch_1"
-            initialValue={bedroomSwitchState}
+            initialValue={!bedroomSwitchState}
             toggleLights={() => fireHassEvent("switch.quarto_gabriel_switch_1")}
           />
           <Lights
             label="Corridor"
             entity="switch.lampada_porta_gabriel_switch_1"
-            initialValue={corridorSwitchState}
+            initialValue={!corridorSwitchState}
             toggleLights={() => fireHassEvent("switch.lampada_porta_gabriel_switch_1")}
           />
           <Button id="btn-power-1" className="h-[5rem]" onClick={() => fireHassEvent("switch.some_switch_1")}>
