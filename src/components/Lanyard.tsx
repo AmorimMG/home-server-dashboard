@@ -54,7 +54,7 @@ export function Lanyard({ ...props }: ComponentProps<"div">) {
 
   const progress = 100 - (100 * (endTimestamp - Date.now())) / (endTimestamp - startedTimestamp);
 
-  const SPOTIFY_API_URL = "http://api.amorim.pro/spotify";
+  const SPOTIFY_API_URL = "https://api.amorim.pro/spotify";
 
   // Function to send commands to Spotify API
   const sendCommand = async (command: string) => {
