@@ -1,6 +1,7 @@
 "use client";
 import { USER_ID } from "@/utils/constants";
-import { Heart, PauseIcon, SkipBackIcon, SkipForwardIcon } from "lucide-react";
+import axios from "axios";
+import { Heart, PauseIcon, PlayIcon, SkipBackIcon, SkipForwardIcon } from "lucide-react";
 import Image from "next/image";
 import { ComponentProps, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -53,6 +54,27 @@ export function Lanyard({ ...props }: ComponentProps<"div">) {
 
   const progress = 100 - (100 * (endTimestamp - Date.now())) / (endTimestamp - startedTimestamp);
 
+  const SPOTIFY_API_URL = "http://api.amorim.pro/spotify";
+
+  // Function to send commands to Spotify API
+  const sendCommand = async (command: string) => {
+    try {
+      const endpoint = `${SPOTIFY_API_URL}/${command}`;
+      await axios({
+        method: "POST",
+        url: endpoint,
+      });
+    } catch (error) {
+      console.error(`Error sending ${command} command:`, error);
+    }
+  };
+
+  // Playback control functions
+  const pauseMusic = () => sendCommand("pause");
+  const playMusic = () => sendCommand("play");
+  const skipNext = () => sendCommand("next");
+  const skipBack = () => sendCommand("previous");
+
   useEffect(() => {
     if (user?.spotify) {
       if (user.spotify.timestamps.end !== endTimestamp) {
@@ -103,9 +125,13 @@ export function Lanyard({ ...props }: ComponentProps<"div">) {
                 on {user?.spotify?.album || lastPlayed?.track?.album?.name}
               </h4>
               <div className="flex flex-row gap-4 pt-4 w-full items-center justify-center -translate-x-8">
-                <SkipBackIcon size={40} className="cursor-pointer" />
-                <PauseIcon size={40} className="cursor-pointer" />
-                <SkipForwardIcon size={40} className="cursor-pointer" />
+                <SkipBackIcon size={40} className="cursor-pointer" onClick={skipBack} />
+                {user?.spotify ? (
+                  <PauseIcon size={40} className="cursor-pointer" onClick={pauseMusic} />
+                ) : (
+                  <PlayIcon size={40} className="cursor-pointer" onClick={playMusic} />
+                )}
+                <SkipForwardIcon size={40} className="cursor-pointer" onClick={skipNext}/>
                 <Heart size={40} className="cursor-pointer" />
               </div>
             </div>
